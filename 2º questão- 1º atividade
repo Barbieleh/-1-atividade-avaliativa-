@@ -1,0 +1,52 @@
+html
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consulta de Telefones</title>
+</head>
+<body>
+    <script>
+        // Função para criar o banco de dados de contatos
+        function criarBancoDeDados() {
+            // Obter a quantidade de registros
+            let quantidade = parseInt(prompt("Quantas pessoas deseja cadastrar?"));
+            if (isNaN(quantidade) || quantidade <= 0) {
+                alert("Quantidade inválida. O programa será encerrado.");
+                return {};
+            }
+
+            // Criar um objeto para armazenar os dados
+            let contatos = {};
+
+            // Coletar os nomes e telefones
+            for (let i = 0; i < quantidade; i++) {
+                let nome = prompt("Digite o nome da pessoa " + (i + 1) + ":");
+                let telefone = prompt("Digite o telefone de " + nome + ":");
+                contatos[nome] = telefone;
+            }
+
+            return contatos;
+        }
+
+        // Função para consultar o telefone pelo nome
+        function consultarTelefone(contatos) {
+            let nomeConsulta = prompt("Digite o nome da pessoa que deseja consultar:");
+            let telefone = contatos[nomeConsulta];
+
+            if (telefone) {
+                alert("O telefone de " + nomeConsulta + " é " + telefone);
+            } else {
+                alert("Nome não encontrado no banco de dados.");
+            }
+        }
+
+        // Executar o programa
+        let contatos = criarBancoDeDados();
+        if (Object.keys(contatos).length > 0) {
+            consultarTelefone(contatos);
+        }
+    </script>
+</body>
+</html>
